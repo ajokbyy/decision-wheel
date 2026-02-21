@@ -25,25 +25,36 @@
 
 # This is real backend engineering.
 
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, render_template, request, jsonify
 import random
 
 app = Flask(__name__)
+
+# Home Route
 @app.route("/")
 def home():
     return render_template("index.html")
 
-@app.route("/spin", methods= ["POST"])
+# Spin API Route
+@app.route("/spin", methods=["POST"])
 def spin():
-    data = request.get_json()
-    options = data.get("options", [])
+    data = request.get_json(force=True)
+
+    print("Received JSON:", data)
+
+    if not data or "options" not in data:
+        return jsonify({"error": "Invalid request"}), 400
+
+    options = data["options"]
 
     if not options:
-        return jsonify({"error":"No options provided"}), 400
-    
+        return jsonify({"error": "No options provided"}), 400
+
     result = random.choice(options)
+
+    print("Selected result:", result)
+
     return jsonify({"result": result})
 
 if __name__ == "__main__":
-    app.run(debug = True)
-
+    app.run(debug=True)

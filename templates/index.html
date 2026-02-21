@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Decsion wheel</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-<script src="{{ url_for('static', filename='script.js') }}"></script>
+    <title>Decision Wheel</title>
 </head>
 <body>
-    <h1>Decision Wheel</h1>
-    <input type="text" id = "options" placeholder="Ex - Pizza, Burger, pasta">
-    <button onclick="spinWheel()">Spin</button>
-    <h2 id = "result"></h2>
-    
+
+<h1>🎡 Decision Wheel</h1>
+
+<input type="text" id="options" placeholder="light, dark, gray">
+<button onclick="spinWheel()">Spin</button>
+
+<h2 id="result"></h2>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
 </body>
 </html>
-
 <!-- #Flask help in Separate HTML files for better organization and maintainability. You can create a folder named "templates" in your Flask project directory and place your HTML files there. Flask will automatically look for templates in that folder when rendering views. This allows you to keep your HTML code separate from your Python code, making it easier to manage and update your web application.
 #Browser -> Flask -> HTML-> Browser -->
